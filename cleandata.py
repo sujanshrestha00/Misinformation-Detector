@@ -32,3 +32,9 @@ df["text"] = df["text"].apply(remove_reuters)
 df["text"] = df["text"].str.replace(r"(?i)\breuters\b", "", regex=True)
 df["text"] = df["text"].apply(clean_text)
 df["text"] = df["text"].apply(remove_stopwords_and_lemmatize)
+
+df.to_csv("data/cleaned.csv", index=False)
+
+print("Done. Saved to data/cleaned.csv")
+print(df.shape)
+print(df["text"].iloc[0][:300])
