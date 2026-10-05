@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
+import joblib
 
 df = pd.read_csv("data/cleaned.csv")
 df = df.dropna(subset=["text"])  # just in case any row became empty after cleaning
@@ -45,3 +46,7 @@ rf_test_acc = rf_model.score(X_test_tfidf, y_test)
 
 print("RF Train accuracy:", rf_train_acc)
 print("RF Test accuracy:", rf_test_acc)
+joblib.dump(model, "model.pkl")
+joblib.dump(vectorizer, "vectorizer.pkl")
+
+print("Model and vectorizer saved.")
